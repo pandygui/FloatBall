@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMouseEvent>
 
 class MainWindow : public QMainWindow
 {
@@ -13,6 +14,11 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+    void mousePressEvent(QMouseEvent *);
+    
+private:
+    QPoint point;
 };
 
 #endif // MAINWINDOW_H

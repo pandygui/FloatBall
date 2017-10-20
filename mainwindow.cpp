@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-{
+{    
     setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 }
@@ -21,6 +21,18 @@ void MainWindow::paintEvent(QPaintEvent *)
     painter.setBrush(QColor("#FFFFFF"));
 
     const int radius = 20;
-
+    
     painter.drawRoundedRect(QRect(0, 0, width(), height()), radius, radius);
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *e)
+{
+    if (e->buttons() & Qt::LeftButton)
+        move(e->globalPos() - point);
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::LeftButton)
+        point = e->globalPos() - frameGeometry().topLeft();
 }
